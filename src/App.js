@@ -3,6 +3,7 @@ import { useState } from "react";
 import { messages } from "./data/messages";
 
 import StepButton from "./components/StepButton";
+import Message from "./components/Message";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -39,13 +40,16 @@ function App() {
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
 
-          <p className="message">
-            {step === 0 &&
-              "Welcome to your React Learning Journey, click next to see your first step! ➡️"}
-          </p>
-          <p className="message">
-            {step >= 1 && `Step ${step}: ` + messages[step - 1]}
-          </p>
+          <Message className="message">
+            {step === 0 ? (
+              <p>
+                Welcome to your React Learning Journey, click next to see your
+                first step! ➡️
+              </p>
+            ) : (
+              <p>{step >= 1 && `Step ${step}: ` + messages[step - 1]}</p>
+            )}
+          </Message>
 
           <div className="buttons">
             <StepButton
